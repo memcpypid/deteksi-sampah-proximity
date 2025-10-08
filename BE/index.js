@@ -6,6 +6,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 const { Sequelize, DataTypes } = require("sequelize");
 
 const app = express();
@@ -143,7 +144,16 @@ app.delete("/api/clear_history", async (req, res) => {
   io.emit("history_cleared", { message: "All data cleared" });
   res.json({ status: "cleared" });
 });
+// ============================
+// SERVE FRONTEND (Vue3 Build)
+// ============================
+const vueDistPath = path.join(__dirname, "", "dist");
+app.use(express.static(vueDistPath));
 
+// Handle semua route frontend (SPA)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(vueDistPath, "index.html"));
+});
 // ============================
 // WEBSOCKET EVENTS
 // ============================
