@@ -12,16 +12,16 @@
           <p class="text-xs md:text-sm text-slate-500">Riwayat data yang sudah direkam</p>
         </div>
       </div>
-      <div class="flex items-center gap-2">
-        <div class="flex items-center gap-2 mr-3">
-          <input v-model="fromDate" type="date" class="border border-slate-300 rounded-md text-sm p-2" />
-          <span class="text-slate-500 text-xs">s/d</span>
-          <input v-model="toDate" type="date" class="border border-slate-300 rounded-md text-sm p-2" />
-          <button @click="applyFilter" :disabled="loading" class="px-3 py-2 rounded-lg text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50">Terapkan</button>
-          <button @click="resetFilter" :disabled="loading" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 disabled:opacity-50">Reset</button>
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full">
+        <div class="flex flex-col sm:flex-row gap-2 sm:items-center sm:mr-3 w-full sm:w-auto">
+          <input v-model="fromDate" type="date" class="border border-slate-300 rounded-md text-sm p-2 w-full sm:w-auto" />
+          <span class="text-slate-500 text-xs text-center sm:text-left">s/d</span>
+          <input v-model="toDate" type="date" class="border border-slate-300 rounded-md text-sm p-2 w-full sm:w-auto" />
+          <button @click="applyFilter" :disabled="loading" class="w-full sm:w-auto px-3 py-2 rounded-lg text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50">Terapkan</button>
+          <button @click="resetFilter" :disabled="loading" class="w-full sm:w-auto px-3 py-2 rounded-lg text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 disabled:opacity-50">Reset</button>
         </div>
-        <button @click="refresh" :disabled="loading" class="px-3 py-2 rounded-lg text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50">Muat Ulang</button>
-        <button @click="onClear" :disabled="loading || rows.length===0" class="px-3 py-2 rounded-lg text-sm font-medium text-white bg-rose-600 hover:bg-rose-700 disabled:opacity-50">Hapus Semua</button>
+        <button @click="refresh" :disabled="loading" class="w-full sm:w-auto px-3 py-2 rounded-lg text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50">Muat Ulang</button>
+        <button @click="onClear" :disabled="loading || rows.length===0" class="w-full sm:w-auto px-3 py-2 rounded-lg text-sm font-medium text-white bg-rose-600 hover:bg-rose-700 disabled:opacity-50">Hapus Semua</button>
       </div>
     </div>
 
@@ -96,7 +96,7 @@
       </table>
     </div>
 
-    <div class="flex items-center justify-between mt-4">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-4">
       <p class="text-xs text-slate-500">Menampilkan {{ pagedRows.length }} dari {{ rows.length }} data</p>
       <div class="flex items-center gap-2">
         <button @click="prev" :disabled="page===1" class="px-3 py-1.5 rounded-md border border-slate-300 text-slate-700 disabled:opacity-50">Prev</button>

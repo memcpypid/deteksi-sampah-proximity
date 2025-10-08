@@ -168,5 +168,6 @@ export default {
 </script>
 
 <style scoped>
-.chart-container { height: 360px; }
+.chart-container { height: 260px; }
+@media (min-width: 768px) { .chart-container { height: 360px; } }
 </style>

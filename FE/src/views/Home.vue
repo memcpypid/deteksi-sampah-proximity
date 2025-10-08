@@ -3,7 +3,7 @@
         <!-- Header -->
         <header class="bg-white shadow-lg border-b border-slate-200">
             <div class="container mx-auto px-6 py-4">
-                <div class="flex items-center justify-between">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div class="flex items-center space-x-4">
                         <div class="bg-gradient-to-br from-emerald-500 to-teal-600 p-3 rounded-xl shadow-lg">
                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -38,7 +38,7 @@
         <!-- Main Content -->
         <main class="container mx-auto px-6 py-8">
             <!-- Sensor Status Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 <!-- Inductive Sensor -->
                 <div
                     class="bg-white rounded-2xl shadow-lg p-6 border border-slate-200 hover:shadow-xl transition-shadow">
@@ -128,26 +128,31 @@
                 </div>
             </div>
             <div
-                class="flex items-center justify-center space-x-4 mb-6 bg-white rounded-2xl shadow-lg p-8  border border-slate-200">
-                <label for="classSelect" class="text-sm font-medium text-slate-700">Pilih Jenis Sampah:</label>
-                <select v-model="selectedClass" id="classSelect" class="border rounded-lg p-2">
-                    <option disabled :value="null">-- Pilih --</option>
-                    <option :value="0">ORGANIK</option>
-                    <option :value="1">ANORGANIK</option>
-                </select>
+                class="flex flex-col lg:flex-row items-stretch lg:items-center lg:justify-center gap-3 mb-6 bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-slate-200">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full lg:w-auto">
+                    <label for="classSelect" class="text-sm font-medium text-slate-700">Pilih Jenis Sampah:</label>
+                    <select v-model="selectedClass" id="classSelect" class="border rounded-lg p-2 w-full sm:w-48">
+                        <option disabled :value="null">-- Pilih --</option>
+                        <option :value="0">ORGANIK</option>
+                        <option :value="1">ANORGANIK</option>
+                    </select>
+                </div>
 
-                <button @click="sendSelectedClass"
-                    class="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition">
-                    Kirim ke Sistem
-                </button>
-                <button @click="resetSistem"
-                    class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
-                    Reset Sistem
-                </button>
+                <div class="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
+                    <button @click="sendSelectedClass"
+                        class="w-full sm:w-auto bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition">
+                        Kirim ke Sistem
+                    </button>
+                    <button @click="resetSistem"
+                        class="w-full sm:w-auto bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+                        Reset Sistem
+                    </button>
+                </div>
 
-                <div class="w-px h-6 bg-slate-200 mx-2"></div>
+                <div class="hidden lg:block w-px h-6 bg-slate-200 mx-2"></div>
+                <div class="block lg:hidden w-full h-px bg-slate-200"></div>
 
-                <div class="flex items-center gap-3">
+                <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
                     <span v-if="recording" class="inline-flex items-center text-sm font-medium text-rose-600">
                         <span class="relative flex h-2.5 w-2.5 mr-2">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
@@ -157,12 +162,12 @@
                     </span>
 
                     <button @click="startRecord" :disabled="recording"
-                        class="px-4 py-2 rounded-lg transition text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                        class="w-full sm:w-auto px-4 py-2 rounded-lg transition text-white disabled:opacity-50 disabled:cursor-not-allowed"
                         :class="recording ? 'bg-slate-400' : 'bg-indigo-600 hover:bg-indigo-700'">
                         Start Record
                     </button>
                     <button @click="stopRecord" :disabled="!recording"
-                        class="px-4 py-2 rounded-lg transition text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                        class="w-full sm:w-auto px-4 py-2 rounded-lg transition text-white disabled:opacity-50 disabled:cursor-not-allowed"
                         :class="!recording ? 'bg-slate-400' : 'bg-amber-600 hover:bg-amber-700'">
                         Stop Record
                     </button>
